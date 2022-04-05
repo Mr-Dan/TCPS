@@ -1,0 +1,10 @@
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\bin\Debug\твпс_лаба_1.exe.config
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\bin\Debug\твпс_лаба_1.exe
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\bin\Debug\твпс_лаба_1.pdb
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\obj\Debug\твпс_лаба_1.Form1.resources
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\obj\Debug\твпс_лаба_1.Properties.Resources.resources
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\obj\Debug\твпс_лаба_1.csproj.GenerateResource.cache
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\obj\Debug\твпс_лаба_1.csproj.CoreCompileInputs.cache
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\obj\Debug\твпс_лаба_1.exe
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\obj\Debug\твпс_лаба_1.pdb
+C:\Users\Дан\source\repos\твпс_лаба_1\твпс_лаба_1\obj\Debug\твпс_лаба_1.csproj.AssemblyReference.cache
