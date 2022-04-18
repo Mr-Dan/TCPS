@@ -19,7 +19,8 @@ namespace твпс_лаба_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            richTextBox2.Clear();
+            richTextBox3.Clear();
             string reg = "(bcc)+|(bd*)+";
             string text = "bccbdddbccdsvbbbdddasewjhgbcbccc";
             text = richTextBox1.Text+" ";
@@ -38,6 +39,7 @@ namespace твпс_лаба_1
             int state = 1;
             int start = 0;
 
+            int pos =0;
             for (int i = 0; i < text.Length; i++)
             {
                 switch(state)
@@ -47,7 +49,6 @@ namespace твпс_лаба_1
                         {
                             case 'b': state = 2; break;
                             default:
-                                list.Add(text.Substring(start, i - start));
                               state = 1;
                               start = i + 1;
                              break;
@@ -60,6 +61,7 @@ namespace твпс_лаба_1
                             case 'd': state = 3; break;
                             case 'c': state = 4; break;
                             default:
+                                list.Add(text.Substring(start, i - start) + "2");
                                 state = 1;
                                 start = i + 1; 
                                 break;
@@ -71,7 +73,7 @@ namespace твпс_лаба_1
                             case 'b':  break;
                             case 'd':  break;
                             default:
-                                list.Add(text.Substring(start, i - start));
+                                list.Add(text.Substring(start, i - start) + "3");
                                 state = 1;
                                 start = i + 1;
                                 break;
@@ -80,33 +82,48 @@ namespace твпс_лаба_1
                     case 4:
                         switch(text[i])
                         {                          
-                            case 'c': state = 5;break;                        
+                            case 'c': 
+                                state = 5;
+                                pos = i;
+                                break;                         
                             default:
-
-                                state = 1;
-                                start = i + 1;
+                                if (pos != 0)
+                                {
+                                    list.Add(text.Substring(start, pos - start + 1) + "4");
+                                    i = pos + 1;
+                                }
+                                else list.Add(text.Substring(start, i - start) + "4");
+                                state = 2;
+                                start = i+1;
+                                pos = 0;
                                 break;
                         }
                     break;
-                    case 5:                      
+                    case 5:
+                       
                         switch (text[i])
                         {
-                            case 'b': state = 6; break;
+                            case 'b': state = 6;
+                               
+                             break;
                             default:
-                                list.Add(text.Substring(start, i - start));
+                                list.Add(text.Substring(start, i - start)+"5");
                                 state = 1;
                                 start = i + 1;
+                                pos = 0;
                              break;
-                        }
-                        list.Add(text.Substring(start, i - start));
+                        }                     
                         break;
                     case 6:
                         switch (text[i])
                         {
-                            case 'c': state = 4; break;
+                            case 'c': state = 4; break;                        
                             default:
-                                state = 1;
-                                start = i + 1; 
+                                list.Add(text.Substring(start, i - pos+1) + "6");
+                                i--;
+                                state = 2;                            
+                                start = i;
+                                pos = 0;
                                 break;
                         }
                     break;
