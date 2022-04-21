@@ -38,7 +38,7 @@ namespace твпс_лаба_1
             List<string> list = new List<string>();
             int state = 1;
             int start = 0;
-
+            string bcc = "";
             int pos =0;
             for (int i = 0; i < text.Length; i++)
             {
@@ -84,33 +84,34 @@ namespace твпс_лаба_1
                         {                          
                             case 'c': 
                                 state = 5;
-                                pos = i;
+                             
                                 break;                         
                             default:
-                                if (pos != 0)
-                                {
-                                    list.Add(text.Substring(start, pos - start + 1) + "4");
-                                    i = pos + 1;
+                                if (bcc != "") { 
+                                    list.Add(bcc + "4");
+                                    list.Add("b4/2");
                                 }
-                                else list.Add(text.Substring(start, i - start) + "4");
-                                state = 2;
+                                else if (bcc == "") list.Add(text.Substring(start, i - start - 1) + "4/1");
+                                bcc = "";
+                                i--;
+                                state = 1;
                                 start = i+1;
-                                pos = 0;
                                 break;
                         }
                     break;
                     case 5:
-                       
+                        bcc = text.Substring(start, i - start);
                         switch (text[i])
                         {
                             case 'b': state = 6;
                                
                              break;
                             default:
-                                list.Add(text.Substring(start, i - start)+"5");
+                                list.Add(bcc + "5");
+                                bcc = "";
                                 state = 1;
                                 start = i + 1;
-                                pos = 0;
+                              
                              break;
                         }                     
                         break;
@@ -119,11 +120,11 @@ namespace твпс_лаба_1
                         {
                             case 'c': state = 4; break;                        
                             default:
-                                list.Add(text.Substring(start, i - pos+1) + "6");
+                                list.Add(bcc + "6");
+                                bcc = "";
+                                state = 2;
                                 i--;
-                                state = 2;                            
                                 start = i;
-                                pos = 0;
                                 break;
                         }
                     break;
