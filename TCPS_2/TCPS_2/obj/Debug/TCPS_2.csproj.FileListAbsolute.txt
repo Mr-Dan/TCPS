@@ -1,0 +1,10 @@
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\bin\Debug\TCPS_2.exe.config
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\bin\Debug\TCPS_2.exe
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\bin\Debug\TCPS_2.pdb
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\obj\Debug\TCPS_2.csproj.AssemblyReference.cache
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\obj\Debug\TCPS_2.Form1.resources
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\obj\Debug\TCPS_2.Properties.Resources.resources
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\obj\Debug\TCPS_2.csproj.GenerateResource.cache
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\obj\Debug\TCPS_2.csproj.CoreCompileInputs.cache
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\obj\Debug\TCPS_2.exe
+C:\Users\Дан\source\repos\TCPS_2\TCPS_2\obj\Debug\TCPS_2.pdb
