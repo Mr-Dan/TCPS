@@ -8,3 +8,13 @@ C:\Users\Дан\source\repos\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-Sys
 C:\Users\Дан\source\repos\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-System.csproj.CoreCompileInputs.cache
 C:\Users\Дан\source\repos\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-System.exe
 C:\Users\Дан\source\repos\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-System.pdb
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\bin\Debug\TCPS- L-System.exe.config
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\bin\Debug\TCPS- L-System.exe
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\bin\Debug\TCPS- L-System.pdb
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-System.csprojAssemblyReference.cache
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS__L_System.Form1.resources
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS__L_System.Properties.Resources.resources
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-System.csproj.GenerateResource.cache
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-System.csproj.CoreCompileInputs.cache
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-System.exe
+C:\Users\Иван\Desktop\TCPS- L-System\TCPS- L-System\obj\Debug\TCPS- L-System.pdb
