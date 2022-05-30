@@ -17,185 +17,213 @@ namespace TCPS_2
             InitializeComponent();
         }
         private void button1_Click(object sender, EventArgs e)
-        {
-            string input = "|(-3+2*2)*7*+1*(1+5*4)*(3+5*6+2)*|(1+4*5+1)";
-            string input2 = "-|*(256)+8";
-            string output = GetPoland(input); 
-            string output3 = DoConvert(output);
-            string output4 = GetPoland(output3);
-            textBox1.Text = Counting(output4).ToString();                   
+        {//-1*√(-3+2*2)*7+1*(1+5*4)*(3+5*6+2)*√(1+4*5+1)
+            //string input = "sqrt(-3+2*2)*7+1*(1+5*4)*(3+5*6+2)*sqrt(1+4*5+1)";
+            string input2 = "cos(1)+sin(1)";
+           // string input2 = " sqrt(4*4 )  * 2    ";
+            
+            string output2 = GetPoland2(input2);      
+            textBox1.Text = Counting2(output2) + "\n";  
+            
         }
 
-
-        private string DoConvert(string input)
-        {               
-            Stack<string> temp = new Stack<string>();
-            for (int i = 0; i < input.Length; i++) 
-            {
-              
-                if (Char.IsDigit(input[i]))
-                {
-                    string a = "";
-
-                    while (!Separator(input[i]) && !Operator(input[i])) 
-                    {
-                        a += input[i]; 
-                        i++;
-                        if (i == input.Length) break;
-                    }
-                    temp.Push(a); 
-                    i--;
-                }
-                else if (Operator(input[i])) 
-                {
-                    string a = "";
-                    string b = "";
-                    if (temp.Count > 0) a = temp.Pop();
-                    if (temp.Count > 0 && input[i] != '|') b = temp.Pop();
-      
-                    switch (input[i])
-                    {
-                        case '+': temp.Push("("+b + input[i] + a+")") ; break;
-                        case '-': temp.Push("(" + b + input[i] + a + ")"); break;
-                        case '*': temp.Push("(" + b + input[i] + a + ")"); break;
-                        case '/': temp.Push("(" + b + input[i] + a + ")"); break;
-                        case '^': temp.Push("(" + b + input[i] + a + ")"); break;
-                        case '|': temp.Push("(" + input[i] + a + ")"); break;
-                    }
-
-                }
-            }    
-            return temp.Pop();
-        }
-    
-
-        private bool Separator(char c)
+        private bool Separator(string text)
         {
-            if ((" ".IndexOf(c) != -1))
+            if ((" ".IndexOf(text) != -1))
                 return true;
             return false;
         }
-   
-        private bool Operator(char с)
-        {
-            if ("+-/*^()|".IndexOf(с) != -1)
-                return true;
-            return false;
+        public bool IsNumeber(string text)
+        {  
+            return double.TryParse(text, out _); 
         }
-        
-        private byte GetPriority(char s)
+
+        private bool Operator(string s)
         {
             switch (s)
             {
-                case '(': return 0;
-                case ')': return 1;
-                case '+': return 2;
-                case '-': return 3;
-                case '*': return 4;
-                case '/': return 4;
-                case '^': return 5;
-                case '|': return 6;//корень
-                default: return 7;
-   
+                case "(":
+                case ")": 
+                case "+": 
+                case "-": 
+                case "*": 
+                case "/": 
+                case "^": 
+                case "sqrt":
+                case "cos": 
+                case "sin": return true;
+                default: return false;
+
+            }
+            
+        }
+        private byte GetPriority(string s)
+        {
+            switch (s)
+            {
+                case "(": return 0;
+                case ")": return 1;
+                case "+": return 2;
+                case "-": return 2;
+                case "*": return 3;
+                case "/": return 3;
+                case "^": return 4;
+                case "sqrt": return 5;
+                case "cos": return 5;
+                case "sin": return 5;
+                default: return 6;
+
             }
         }
-         
-        private double Counting(string input)
+
+        private List<string> StringReturn (string input)
         {
-            double result = 0; 
-            Stack<double> temp = new Stack<double>(); 
-
-            for (int i = 0; i < input.Length; i++) 
-            {
-                
-                if (Char.IsDigit(input[i]))
+            string operators = "";
+            string number = "";
+            List<string> text = new List<string>();
+            for (int i = 0; i < input.Length; i++)
+            {              
+                if (!Separator(input[i].ToString()))
                 {
-                    string a = "";
-
-                    while (!Separator(input[i]) && !Operator(input[i])) 
+                    if (IsNumeber(input[i].ToString()))
                     {
-                        a += input[i]; 
-                        i++;
-                        if (i == input.Length) break;
+                        if (operators.Length > 0)
+                        {
+                            text.Add(operators);
+                            operators = "";
+                        }
+                           
+                        number += input[i];
                     }
-                    temp.Push(double.Parse(a)); 
-                    i--;
+                    else
+                    {
+                        if (number.Length > 0)
+                        {
+                            text.Add(number);
+                            number = "";
+                        }
+                        else if(Operator(operators))
+                        {
+                            text.Add(operators);
+                            operators = "";
+                        }
+                        operators += input[i];
+                    }
                 }
-                else if (Operator(input[i])) 
+                else
                 {
-                    
+                    if (operators.Length > 0)
+                    {
+                        text.Add(operators);
+                        operators = "";
+                    }
+                    if (number.Length > 0)
+                    {
+                        text.Add(number);
+                        number = "";
+                    }
+                }
+        
+            }
+            if (number.Length > 0)
+            {
+                text.Add(number);
+                number = "";
+            }
+            if (operators.Length > 0)
+            {
+                text.Add(operators);
+                operators = "";
+            }
+            return text;
+        }
+
+
+        private string GetPoland2(string input)
+        {
+            string result = "";
+            List<string> text = StringReturn(input);
+            Stack<string> stack = new Stack<string>();
+
+            for (int i = 0; i < text.Count; i++)
+            {
+                if (!Separator(text[i]))
+                {
+                    if (IsNumeber(text[i]))
+                    {
+                        result +=text[i] + " " ;
+                       
+                    }
+
+                    if (Operator(text[i]))
+                    {
+                        if (text[i] == "(")
+                            stack.Push(text[i]);
+                        else if (text[i] == ")")
+                        {
+                            string s = stack.Pop();
+
+                            while (s != "(")
+                            {
+                                result += s.ToString() + " ";
+                                s = stack.Pop();
+                            }
+                        }
+                        else
+                        {
+                            if (stack.Count > 0)
+                                if (GetPriority(text[i]) <= GetPriority(stack.Peek()))
+                                    result += stack.Pop().ToString() + " ";
+                            stack.Push(text[i].ToString());
+                        }
+                    }
+                }
+            }
+            while (stack.Count > 0)
+                result += stack.Pop() + " ";
+
+            return result;
+        }
+
+        private double Counting2(string input)
+        {
+            double result = 0;
+            List<string> text = StringReturn(input);
+            Stack<double> temp = new Stack<double>();
+
+            for (int i = 0; i < text.Count; i++)
+            {
+
+                if (IsNumeber(text[i]))
+                {                  
+                    temp.Push(double.Parse(text[i]));
+                  
+                }
+                else if (Operator(text[i]))
+                {
+
                     double a = 0;
                     double b = 0;
                     if (temp.Count > 0) a = temp.Pop();
-                    if (temp.Count >0 && input[i]!= '|') b= temp.Pop();
+                    if (temp.Count > 0 && !text[i].Contains("sqrt")) b = temp.Pop();
+                    if (temp.Count > 0 && !text[i].Contains("cos")) b = temp.Pop();
+                    if (temp.Count > 0 && !text[i].Contains("sin")) b = temp.Pop();
 
-
-                    switch (input[i]) 
+                    switch (text[i])
                     {
-                        case '+': result = b + a; break;
-                        case '-': result = b - a; break;
-                        case '*': result = b * a; break;
-                        case '/': result = b / a; break;
-                        case '^': result = Math.Pow(b,a); break;
-                        case '|': result = Math.Sqrt(a); break;
+                        case "+": result = b + a; break;
+                        case "-": result = b - a; break;
+                        case "*": result = b * a; break;
+                        case "/": result = b / a; break;
+                        case "^": result = Math.Pow(b, a); break;
+                        case "sqrt": result = Math.Sqrt(a); break;
+                        case "cos": result = Math.Cos(a); break;
+                        case "sin": result = Math.Sin(a); break;
                     }
-                    temp.Push(result); 
+                    temp.Push(result);
                 }
             }
-            return temp.Peek(); 
-        }
-
-        private string GetPoland(string input)
-        {
-            string result = string.Empty; 
-            Stack<char> operStack = new Stack<char>(); 
-
-            for (int i = 0; i < input.Length; i++) 
-            {
-              
-                if (Separator(input[i]))
-                    continue;  
-                if (Char.IsDigit(input[i])) 
-                {
-                  
-                    while (!Separator(input[i]) && !Operator(input[i]))
-                    {
-                        result += input[i]; 
-                        i++; 
-                        if (i == input.Length) break; 
-                    }
-
-                    result += " "; 
-                    i--; 
-                }
-         
-                if (Operator(input[i])) 
-                {
-                    if (input[i] == '(') 
-                        operStack.Push(input[i]); 
-                    else if (input[i] == ')') 
-                    {
-                        char s = operStack.Pop();
-
-                        while (s != '(')
-                        {
-                            result += s.ToString() + ' ';
-                            s = operStack.Pop();
-                        }
-                    }
-                    else 
-                    {
-                        if (operStack.Count > 0) 
-                            if (GetPriority(input[i]) <= GetPriority(operStack.Peek()))
-                                result += operStack.Pop().ToString() + " "; 
-                                operStack.Push(char.Parse(input[i].ToString())); 
-                    }
-                }
-            }
-            while (operStack.Count > 0)
-                result += operStack.Pop() + " ";
-
-            return result; 
+            return temp.Peek();
         }
     }
 }
